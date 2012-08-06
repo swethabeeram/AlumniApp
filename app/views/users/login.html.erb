@@ -1,0 +1,16 @@
+<h2 class="title">Login</h2>
+
+<div id="login">
+  <%= form_for :user, :url=> login_users_path do |f|%>
+    <%= f.label "Email"%>:<br/>
+    <%= f.text_field :email%><br/>
+
+    <%= f.label "Password"%>:<br/>
+    <%= f.password_field :password%><br/>
+
+    <%= f.label "Course"%>:<br/>
+    <%= f.select :course_id, Course.all.collect{|c| [c.name, c.id]}%><br/>
+
+    <%= f.submit "Login"%>
+  <% end%>
+</div>

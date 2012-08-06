@@ -1,0 +1,15 @@
+<h2 class="title">Photo: <%= @photo.photo_file_name%></h2>
+<br/><br/>
+
+<%= link_to "View All Photos", photos_path%>
+
+<div class="photo">
+  <%= image_tag @photo.photo.url %>
+</div>
+
+<%= link_to "Download this Photo", download_photo_path(@photo)%>
+
+<%= link_to "Delete", photo_path(@photo), :method => :delete, :data => {:confirm => "Are you sure you want to permanently delete this photo?"}%>
+
+
+

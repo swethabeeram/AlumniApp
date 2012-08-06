@@ -1,0 +1,10 @@
+<div id="new_comment" style="display:none;background-color:lightyellow; padding:10px; margin:10px; border: 2px solid yellow;">
+  <strong>Add New Comment</strong>
+  <%= form_for [@commentable, @comment] do |f| %>
+    <p>
+      <%= f.label :comment %><br />
+      <%= f.text_area :comment %>
+    </p>
+    <p><%= f.submit "Submit" %></p>
+  <% end %>
+</div>

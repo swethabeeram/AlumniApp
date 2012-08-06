@@ -1,0 +1,11 @@
+<h2>Add New Photo</h2>
+
+<div class="form">
+  <%= form_for :photo, :url=> photos_path, :html => {:multipart => true} do |f| %>
+    Select Photo : <%= f.file_field :photo%>
+    <br/>
+
+    <%= f.submit "Upload Photo"%>
+
+  <% end %>
+</div>

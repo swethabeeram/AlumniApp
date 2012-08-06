@@ -1,0 +1,13 @@
+<% if @commentable.comments.empty?%>
+  No Comments Found!
+<% else %>
+  <% @commentable.comments.each do |comment|%>
+    <div style="background-color:lightgreen; padding:10px; margin:10px; border: 2px solid green;">
+      <%= simple_format(comment.comment) %>
+      <br/>
+
+      <small>Posted on: <%= format_date(comment.created_at)%></small>
+      <br/>
+    </div>
+  <% end %>
+<% end %>

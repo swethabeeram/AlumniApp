@@ -1,0 +1,39 @@
+<%= link_to "View All Events", events_path%>
+<br/>
+<hr/>
+<div style="padding:10px; margin:10px;background-color:#efefef; border: 2px solid #aaa">
+  <strong><%= @event.title %></strong>
+  <br/>
+
+  <%= simple_format(@event.description) %><br/>
+
+  <strong>Event on: <%= @event.event_at_date%> at <%= @event.event_at_time%></strong>
+  <br/>
+
+  <small>Published on: <%= format_date(@event.created_at)%></small>
+  <br/>
+
+  <small>Published by: <%= @event.user.name%></small>
+  <br/>
+</div>
+
+<% if logged_in? && @event.user == current_user%>
+  <%= link_to "Edit this Event", edit_event_path(@event)%> | 
+  <% if @event.users.include?(current_user)%>
+    <%= link_to "Remove RSVP", remove_rsvp_event_path(@event), :method => :post, :data=>{:confirm=>"Are you sure you want to remove RSVP from this event?"}%> | 
+    <% else %>
+  <%= link_to "RSVP", rsvp_event_path(@event), :method => :post, :data=>{:confirm=>"Are you sure, you want to RSVP for this event?"}%> |
+    <% end %> 
+  <%= link_to_function "Add Task",  "$('#new_task').show()" %> | 
+<% end %>
+<% if logged_in? %>
+  <%= link_to_function "Add Comment", "$('#new_comment').show()" %>
+<% end %>
+
+<h3>Comments</h3>
+<%= render :partial => "comments/form"%>
+<%= render :partial => "comments/comment"%>
+
+<h3>Tasks</h3>
+<%= render :partial => "tasks/form"%>
+<%= render :partial => "tasks/task"%>

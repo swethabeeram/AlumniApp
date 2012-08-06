@@ -1,0 +1,31 @@
+<% if logged_in? %>
+  <%= link_to "Create New Note", new_note_path%>
+<% else %>
+  <%= link_to "Login", login_users_path%> and add new notes.
+<% end %>
+<br/>
+<hr/>
+
+
+<div style="padding:10px; margin:10px;background-color:#efefef; border: 2px solid #aaa">
+
+<% unless @notes.empty? %>
+  <ul>
+    <% @notes.each do |note| %>
+    <li><%= link_to note.file_file_name, note_path(note)%><br/>
+
+    Created by: <%= note.user.name%> <br/>
+
+    <%= link_to "Download", download_note_path(note)%>
+
+  <%= link_to "Delete", note_path(note), :method => :delete, :data => {:confirm => "Are you sure you want to permanently delete this note?"}%>
+    </li>
+    <% end %>
+  </ul>
+<% else %>
+  No Notes Found!
+<% end %>
+
+</div>
+
+

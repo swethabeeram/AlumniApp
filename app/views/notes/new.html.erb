@@ -1,0 +1,11 @@
+<h2>Add New Note</h2>
+
+<div class="form">
+  <%= form_for :note, :url=> notes_path, :html => {:multipart => true} do |f| %>
+    Select Note : <%= f.file_field :file%>
+    <br/>
+
+    <%= f.submit "Upload Note"%>
+
+  <% end %>
+</div>

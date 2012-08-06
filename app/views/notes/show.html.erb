@@ -1,0 +1,18 @@
+<%= link_to "View All Notes", notes_path%>
+<br/>
+<div class="photo">
+    Note Name:<%= @note.file_file_name%>
+</div>
+
+<%= link_to "Download this Note", download_note_path(@note)%> | 
+
+<%= link_to "Delete", note_path(@note), :method => :delete, :data => {:confirm => "Are you sure you want to permanently delete this note?"}%> | 
+
+<% if logged_in? %>
+  <%= link_to_function "Add Comment", "$('#new_comment').show()" %>
+<% end %>
+<br/>
+<h3>Comments</h3>
+<%= render :partial => "comments/form"%>
+<%= render :partial => "comments/comment"%>
+

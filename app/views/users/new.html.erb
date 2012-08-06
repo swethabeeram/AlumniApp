@@ -1,0 +1,31 @@
+<h2>New User signup</h2>
+
+<div id="signup">
+  <%= render_errors(@user)%>
+  <%= form_for :user, :url=> signup_users_path do|f|%>
+    <%= f.label :name%><br/>
+    <%= f.text_field :name%>
+    <br/>
+
+    <%= f.label :email%><br/>
+    <%= f.text_field :email%>
+    <br/>
+
+    <%= f.label :password%><br/>
+    <%= f.password_field :password%>
+    <br/>
+
+    <%= f.label :password%><br/>
+    <%= f.password_field :password_confirmation%>
+    <br/>
+
+    <%= f.label :course%><br/>
+    <%= f.select :course_id, Course.all.collect{|c| [c.name, c.id]}%>
+    <br/>
+
+
+    <%= f.submit "Signup Now!"%><br/>
+
+  <% end %>
+  
+</div>

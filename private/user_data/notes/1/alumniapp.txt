@@ -1,0 +1,30 @@
+1. show the user who has posted the comment in event section.
+
+To display the tasks in event:
+
+<% @event.tasks.each do |task| %>  <div style="margin: 10px; padding: 10px">    <strong>Task:</strong> <%= task.description %>    <br />    <strong>Assigned to:</strong> <%= task.user.name %>  </div><% end %>
+
+for RSVP functionality: Action inside events controller and find the logged in user
+
+inside rsvp method write this: 
+@event.users << current_user
+
+or Akshata code:
+
+@event = Event.find_by_id(params[:event_id])@user = current_user    
+if @event.users.include?(@user)	flash[:notice]="RSVP has already been accepted"else	flash[:notice]="RSVP has been accepted"      
+	@event.users << @user    end        
+redirect_to event_path(@event)
+
+-----------------
+from sur:
+
+if @event.users.include?(current_user)  
+	flash[:notice] = "RSVP has already been accepted"
+else	flash[:notice] = "RSVP has been accepted"  
+	@event.users << current_user
+end
+redirect_to event_path(@event)
+--------------------------
+
+https://github.com/Akshatha17/AluminiApp.git

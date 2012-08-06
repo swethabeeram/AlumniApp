@@ -1,0 +1,20 @@
+<% if @event.tasks.empty?%>
+  No Tasks Found!
+<% else %>
+  <% @event.tasks.each do |task|%>
+    <div style="background-color:lightgreen; padding:10px; margin:10px; border: 2px solid green;">
+      <%= simple_format(task.title) %>
+      <br/>
+
+      <small>Published on: <%= format_date(task.created_at)%></small>
+      <br/>
+
+      <small>Published by: <%= task.user.name %></small>
+      <br/>
+
+      <%if logged_in?%>
+      <%= button_to "Delete this Task", event_task_path(@event,task), :data => {:confirm => "Are you sure"}, :method => :delete %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

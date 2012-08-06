@@ -1,0 +1,25 @@
+<%= link_to "View All Messages", messages_path%>
+<br/>
+<hr/>
+<div style="padding:10px; margin:10px;background-color:#efefef; border: 2px solid #aaa">
+  <strong><%= @message.title %></strong>
+  <br/>
+
+  <%= simple_format(@message.body) %>
+
+  <small>Published on: <%= format_date(@message.created_at)%></small>
+  <br/>
+
+</div>
+
+<% if logged_in? && @message.user==current_user%>
+  <%= link_to "Edit this Message", edit_message_path(@message)%> | 
+<% end %>
+<% if logged_in? %>
+  <%= link_to_function "Add Comment", "$('#new_comment').show()" %>
+<% end %>
+
+<h3>Comments</h3>
+<%= render :partial => "comments/form"%>
+<%= render :partial => "comments/comment"%>
+

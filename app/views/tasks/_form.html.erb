@@ -1,0 +1,16 @@
+<div id="new_task" style="display:none;background-color:lightyellow; padding:10px; margin:10px; border: 2px solid yellow;">
+  <strong>Add New Task</strong>
+  <%= form_for @task, :url => event_tasks_path(@event) do |f|%>
+    Task: 
+    <br/>
+    Title: <%= f.text_field :title%><br/>
+    Description: <%= f.text_area :description%>
+    <br/>
+
+    User: <%= f.select :user_id, User.all.collect{|u| [u.name, u.id]}%>
+    <br/>
+
+    <%= f.submit "Save this Task"%>
+    <%= button_to_function "Cancel", "$('#new_task').hide()"%>
+  <% end %>
+</div>
